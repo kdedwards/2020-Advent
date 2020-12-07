@@ -1,4 +1,4 @@
-with open("C:\\Users\\kdedw\\projects\\2020-Advent\\Day 01\\Report_Repair.dat") as expenseData:
+with open("Report_Repair.dat") as expenseData:
     expenses = expenseData.read().split('\n')
 #pprint(expenses)
 for expense in expenses:
