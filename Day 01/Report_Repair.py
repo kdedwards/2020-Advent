@@ -1,6 +1,6 @@
 with open("Report_Repair.dat") as expenseData:
     expenses = expenseData.read().split('\n')
-#pprint(expenses)
+
 for expense in expenses:
     for secExpense in expenses[expenses.index(expense)+1::]:
         if(int(expense)+int(secExpense)==2020):
