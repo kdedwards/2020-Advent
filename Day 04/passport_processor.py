@@ -92,6 +92,7 @@ for line in passportsRaw:
         thisPassport=[]
     else:
         thisPassport.extend(line.replace('\n','').split(' '))
+passports.append(thisPassport)
 
 validPassports=0
 invalidPassports=0
