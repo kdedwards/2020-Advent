@@ -1,4 +1,4 @@
-with open("C:\\Users\\dedwards\\projects\\2020-Advent\\Day 05\\seats.dat") as seatData:
+with open("seats.dat") as seatData:
     seats = seatData.read().split('\n')
 
 highestSeatID=0
