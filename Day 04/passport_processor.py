@@ -1,5 +1,5 @@
 import re
-with open("C:\\Users\\dedwards\\projects\\2020-Advent\\Day 04\\passports.dat") as passportData:
+with open("passports.dat") as passportData:
     passportsRaw = passportData.readlines()
 
 
