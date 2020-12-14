@@ -15,29 +15,38 @@ def normalizeBagData(bagData):
         #print(innerBags)
         innerBags=re.sub(r'\d+\ ','',innerBags)
         innerBags=re.sub(r'\ bags\.{0,1}','',innerBags)
+        innerBags=re.sub(r'\ bag\.{0,1}','',innerBags)
         innerBags=innerBags.split(', ')
         #print(innerBags)
         bagContent['innerBags']=innerBags
-        print(bagContent)
+        #print(bagContent)
         bagContents.append(bagContent)
     return bagContents
 
-def lookInBagFor(outerBags, outerBag, findBag):
+def lookInBagFor(outerBags, selectedOuterBag, findBag):
     foundOne=False
-    outerBag=outerBags[outerBag]
-    innerBags=outerBag['innerBags']
-    for innerBag in innerBags:
-        foundOne=lookInBagFor(outerBags, innerBag, findBag)
-        if(innerBag==findBag):
-            foundOne=True
+    for outerBag in outerBags:
+        #print('Looking in: {}'.format(outerBag['outerBag']))
+        if(outerBag['outerBag']==selectedOuterBag):
+                innerBags=outerBag['innerBags']
+                for innerBag in innerBags:
+                    foundInInnerBag=lookInBagFor(outerBags, innerBag, findBag)
+                    if(innerBag == findBag or foundInInnerBag):
+                        foundOne=True
     return foundOne
 
-bagInfo=readFileToList('C:\\Users\\kdedw\\projects\\2020-Advent\\Day 07\\bagdata.dat')
+
+bagInfo=readFileToList('bagdata.dat')
 bagInfo=normalizeBagData(bagInfo)
 #print(bagInfo)
+lookForBag='shiny gold'
+outerBagsCan=0
+for outerBag in bagInfo:
+    #print(lookInBagFor(bagInfo,outerBag['outerBag'],lookForBag))
+    outerBagCanHold=lookInBagFor(bagInfo, outerBag['outerBag'], lookForBag)
+    if(outerBagCanHold==True):
+        #print('Bag {} can eventually hold {}.'.format(outerBag['outerBag'], lookForBag))
+        outerBagsCan+=1
+print('{} bags can eventually contain {} bag.'.format(outerBagsCan, lookForBag))
 
-#lookInBagFor(bagInfo,'bright olive','dotted white')
-
-
-#for outerBag in bagInfo['outerBag']:
-#    lookInBagFor(outerBag, 'shiny gold')
+# 235 bags
