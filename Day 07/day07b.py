@@ -31,10 +31,11 @@ def normalizeBagData(bagData):
 def lookInBagFor(outerBags, findBag):
     bagsInsideCount=0
     for outerBag in outerBags:
-        print('Looking in: {}'.format(outerBag['outerBag']))
         if(outerBag['outerBag']==findBag):
+                #print('Looking in: {}'.format(outerBag['outerBag']))
                 innerBags=outerBag['innerBags']
                 for innerBag in innerBags:
+                    lookInBagFor(outerBags, list(innerBag.items())[0][0])
                     print(innerBag)
                     #innerInnerBags=lookInBagFor(outerBags, findBag)
     #return bagsInsideCount
