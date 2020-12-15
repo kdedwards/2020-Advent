@@ -36,7 +36,7 @@ def lookInBagFor(outerBags, selectedOuterBag, findBag):
     return foundOne
 
 
-bagInfo=readFileToList('bagdata.dat')
+bagInfo=readFileToList('day07a.dat')
 bagInfo=normalizeBagData(bagInfo)
 #print(bagInfo)
 lookForBag='shiny gold'
