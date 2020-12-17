@@ -40,7 +40,7 @@ def lookInBagFor(outerBags, findBag):
     return bagsInsideCount
 
 
-bagInfo=readFileToList(r'C:\Users\dedwards\projects\2020-Advent\Day 07\day07b-example.dat')
+bagInfo=readFileToList(r'day07b-example.dat')
 bagInfo=normalizeBagData(bagInfo)
 for bag in bagInfo:
     print(bag)
