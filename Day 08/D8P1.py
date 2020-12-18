@@ -3,6 +3,7 @@ def readFileToList(fileName):
         retData = Data.read().split('\n')
     return retData
 
+
 instructions=readFileToList(r'instructions-p1.dat')
 executions=[0] * len(instructions)
 accumulator=0
