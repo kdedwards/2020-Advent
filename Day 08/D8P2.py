@@ -45,7 +45,7 @@ def testInstructions(instructions):
             instructionPointer+=int(operand)
 
 
-instructions=readFileToList(r'C:\Users\dedwards\projects\2020-Advent\Day 08\instructions-p2.dat')
+instructions=readFileToList(r'instructions-p2.dat')
 functionSearchPointer=0
 for instruction in instructions:
     function=instruction.split(' ')[0]
