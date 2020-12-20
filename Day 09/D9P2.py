@@ -31,9 +31,7 @@ def findContiguousAddends(data,findSum):
             windowSlice=data[startIndex:startIndex+windowSize]
             for i in range(0, len(windowSlice)):
                 windowSlice[i] = int(windowSlice[i])
-            testSum=0
-            for addend in windowSlice:
-                testSum+=addend
+            testSum=sum(windowSlice)
             #print('Sum: {} Slice: {}'.format(testSum, windowSlice))
             if(int(testSum)==int(findSum)):
                 print('Found it, window size: {} slice: {}'.format(windowSize,windowSlice))
