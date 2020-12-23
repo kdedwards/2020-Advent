@@ -41,12 +41,12 @@ print('* Starting Ferry Position: {} Ferry direction: {}'.format(ferryPosition, 
 for instruction in navInstructions:
     action = instruction[0:1]
     units = int(instruction[1:len(instruction)])
-    print('** Navigation Action: {} Units: {}'.format(action, units))
+    # print('** Navigation Action: {} Units: {}'.format(action, units))
     if action == 'L' or action == 'R':
         ferryDirection = turnFerry(ferryDirection, action, units)
     else:
         ferryPosition = moveFerry(ferryDirection, ferryPosition, action, units)
-    print('* Ending Ferry Position: {} Ferry direction: {}'.format(ferryPosition, ferryDirection))
-
+    # print('* Ending Ferry Position: {} Ferry direction: {}'.format(ferryPosition, ferryDirection))
+print('* Ending Ferry Position: {} Ferry direction: {}'.format(ferryPosition, ferryDirection))
 manhattanDistance = abs(ferryPosition['X']) + abs(ferryPosition['Y'])
 print('Manhattan distance of ferry from origin: {}'.format(manhattanDistance))
