@@ -17,7 +17,7 @@ def normalizeBusses(busses):
     return normalBusses
 
 
-busSchedule = readFileToList(r'C:\Users\dedwards\projects\2020-Advent\Day 13\input.dat')
+busSchedule = readFileToList(r'input.dat')
 busses = busSchedule[1].split(',')
 normBusses = normalizeBusses(busses)
 # print(normBusses)
