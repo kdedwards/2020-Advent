@@ -6,7 +6,7 @@ def readFileToList(fileName):
     return retData
 
 
-busSchedule = readFileToList(r'insput.dat')
+busSchedule = readFileToList(r'sample.dat')
 startTime = int(busSchedule[0])
 busses = list(filter(('x').__ne__, busSchedule[1].split(',')))
 
