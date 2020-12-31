@@ -1,33 +1,31 @@
-# numbersSpoken = [0, 3, 6]
-numbersSpoken = {
-    0: 0,
-    3: 1,
-    6: 2
-}
-iterations = 7
-lastNumber = list(numbersSpoken.keys())[-1]
-print('Starting number: {}'.format(lastNumber))
-print(numbersSpoken)
-for i in range(len(numbersSpoken), iterations):
-    print('Iteration: {} numbersSpoken: {}'.format(i, numbersSpoken))
-    if (lastNumber not in numbersSpoken.keys()) != (numbersSpoken[lastNumber] == (i - 1)):
-        print('Number {} never spoken.'.format(lastNumber))
-        lastNumber = 0
-    elif (lastNumber in numbersSpoken) and (numbersSpoken[lastNumber] == (i - 1)):
-        lastNumber = i - numbersSpoken[lastNumber]
-        print('1-Number {} was exact previous number'.format(lastNumber))
-    else:
-        print('2-Number {} was not previous number'.format(lastNumber))
-    numbersSpoken[lastNumber] = i
-    print('Last number: {}.'.format(lastNumber))
-print(numbersSpoken)
+# Set some intitial variables
+lstNumbersSpoken = [15, 5, 1, 4, 7, 0]
+firstSpoken = True
+iterations = 30000000
+numbersSpoken = {}
 
-# for i in range(len(numbersSpoken), iterations):
-#    if numbersSpoken.count(numbersSpoken[i - 1]) == 1:
-#        numbersSpoken.append(0)
-#    else:
-#        numbersSpoken.reverse()
-#        lastTimeSpoken = numbersSpoken.index(numbersSpoken[0], 1)
-#        numbersSpoken.reverse()
-#        numbersSpoken.append(lastTimeSpoken)
-#print('Last number spoken: {}.'.format(numbersSpoken[-1]))
+# Build dictionary from the list given above, exlcuding the last element to be used to prime the loop below
+for i in range(0, len(lstNumbersSpoken) - 1):
+    numbersSpoken[lstNumbersSpoken[i]] = i
+lastNumber = lstNumbersSpoken[-1]
+# Run through the iterations updating the dictionary as needed
+for i in range(len(numbersSpoken), iterations - 1):
+    # This is not a new number, but we need to capture it's last position as it will be overwritten with the current iteration
+    if firstSpoken is False:
+        lastTimeSpoken = numbersSpoken[lastNumber]
+    numbersSpoken[lastNumber] = i
+    # Based on the rules, if it's the first time the number is said, the next number spoken will be 0, otherwise it will be the distance from the last time it was spoken
+    if firstSpoken is True:
+        nextNumber = 0
+    else:
+        nextNumber = i - lastTimeSpoken
+    # Check to see if the nextNumber has already been said
+    if nextNumber in numbersSpoken:
+        firstSpoken = False
+    else:
+        firstSpoken = True
+    # Debugging
+    # print('Turn: {} lastNumber: {} nextNumber {}: numbersSpoken: {}'.format(i, lastNumber, nextNumber, numbersSpoken))
+    # Setup the next iteration
+    lastNumber = nextNumber
+print('Last number spoken: {}. In the end {} unique numbers were said.'.format(lastNumber, len(numbersSpoken)))
