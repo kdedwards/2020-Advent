@@ -20,24 +20,25 @@ def normalizeBusses(busses):
 busSchedule = readFileToList(r'input.dat')
 busses = busSchedule[1].split(',')
 normBusses = normalizeBusses(busses)
-# print(normBusses)
-arrivalStart = 4347826086956
-arrivalWindowSize = 1000000
-arrivalStartFound = False
-while not arrivalStartFound:
-    allArrivalTimes = []
-    print('Searching times: {} - {}'.format(arrivalStart, arrivalStart + arrivalWindowSize))
-    for normBus in normBusses:
-        arrivalTimes = set()
-        for i in range(1, arrivalWindowSize):
-            arrivalTimes.add(arrivalStart + i * normBus[1] - normBus[0] + normBusses[0][1])
-        allArrivalTimes.append(arrivalTimes)
-    commonArrivals = allArrivalTimes[0] & allArrivalTimes[1]
-    for i in range(2, len(allArrivalTimes)):
-        commonArrivals = commonArrivals & allArrivalTimes[i]
-    if len(commonArrivals) != 0:
-        lstCommonArrivals = list(commonArrivals)
-        lstCommonArrivals.sort()
-        print(lstCommonArrivals[0])
-        arrivalStartFound = True
-    arrivalStart = arrivalStart + arrivalWindowSize
+
+foundArrivalTime = False
+# i = 1
+i = 14285714285714
+i = 1
+while not foundArrivalTime:
+    bussesOnTime = 1
+    startTime = i * normBusses[0][1]
+    for j in range(1, len(normBusses)):
+        if j == 0:
+            break
+        thisBusLastArrival = int(startTime / normBusses[j][1]) * normBusses[j][1]
+        thisBusNextArrival = thisBusLastArrival + normBusses[j][1]
+        if thisBusNextArrival == startTime + normBusses[j][0]:
+            bussesOnTime += 1
+        else:
+            break
+    if bussesOnTime == len(normBusses):
+        foundArrivalTime = True
+    i += 1
+
+print('Found start time: {}'.format(startTime))
